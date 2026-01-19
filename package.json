@@ -1,0 +1,29 @@
+{
+  "name": "wpnas-kit",
+  "version": "1.0.0",
+  "description": "WPNAS Kit Plugin",
+  "author": "WPNAS",
+  "license": "GPL-2.0-or-later",
+  "main": "build/index.js",
+  "scripts": {
+    "build": "wp-scripts build",
+    "format": "wp-scripts format",
+    "lint:css": "wp-scripts lint-style",
+    "lint:js": "wp-scripts lint-js",
+    "packages-update": "wp-scripts packages-update",
+    "plugin-zip": "wp-scripts plugin-zip",
+    "start": "wp-scripts start"
+  },
+  "devDependencies": {
+    "@wordpress/scripts": "^31.3.0"
+  },
+  "dependencies": {
+    "@wordpress/api-fetch": "^7.38.0",
+    "@wordpress/components": "^32.0.0",
+    "@wordpress/dataviews": "^11.2.0",
+    "@wordpress/dom-ready": "^4.38.0",
+    "@wordpress/element": "^6.38.0",
+    "@wordpress/i18n": "^6.11.0",
+    "@wordpress/url": "^4.38.0"
+  }
+}
