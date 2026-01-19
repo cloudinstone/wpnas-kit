@@ -195,6 +195,14 @@ class Plugin
      */
     public function get_remote_plugins()
     {
+
+        $transient = get_transient('wpnas_remote_plugins');
+        if ($transient) {
+            return rest_ensure_response($transient);
+        }
+
+
+
         $response = wp_remote_get('https://wpnas.local/wp-json/wpnas/v2/plugins/', [
             'timeout' => 30,
             'sslverify' => false
@@ -219,6 +227,8 @@ class Plugin
         if (!is_array($data)) {
             return rest_ensure_response([]);
         }
+
+        set_transient('wpnas_remote_plugins', $data, 60 * 60 * 24);
 
         return rest_ensure_response($data);
     }

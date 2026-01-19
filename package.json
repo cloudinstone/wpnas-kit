@@ -12,7 +12,8 @@
     "lint:js": "wp-scripts lint-js",
     "packages-update": "wp-scripts packages-update",
     "plugin-zip": "wp-scripts plugin-zip",
-    "start": "wp-scripts start"
+    "start": "wp-scripts start",
+    "start:hot": "wp-scripts start --hot"
   },
   "devDependencies": {
     "@wordpress/scripts": "^31.3.0"
@@ -20,10 +21,13 @@
   "dependencies": {
     "@wordpress/api-fetch": "^7.38.0",
     "@wordpress/components": "^32.0.0",
+    "@wordpress/data": "^10.38.0",
     "@wordpress/dataviews": "^11.2.0",
     "@wordpress/dom-ready": "^4.38.0",
     "@wordpress/element": "^6.38.0",
     "@wordpress/i18n": "^6.11.0",
-    "@wordpress/url": "^4.38.0"
+    "@wordpress/preferences": "^4.38.0",
+    "@wordpress/url": "^4.38.0",
+    "semver": "^7.7.3"
   }
 }

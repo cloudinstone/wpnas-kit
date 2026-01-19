@@ -14,6 +14,9 @@ importers:
       '@wordpress/components':
         specifier: ^32.0.0
         version: 32.0.0(@emotion/is-prop-valid@1.4.0)(@types/react@18.3.27)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
+      '@wordpress/data':
+        specifier: ^10.38.0
+        version: 10.38.0(react@18.3.1)
       '@wordpress/dataviews':
         specifier: ^11.2.0
         version: 11.2.0(@emotion/is-prop-valid@1.4.0)(@types/react@18.3.27)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(stylelint@16.26.1(typescript@5.9.3))
@@ -26,9 +29,15 @@ importers:
       '@wordpress/i18n':
         specifier: ^6.11.0
         version: 6.11.0
+      '@wordpress/preferences':
+        specifier: ^4.38.0
+        version: 4.38.0(@emotion/is-prop-valid@1.4.0)(@types/react@18.3.27)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
       '@wordpress/url':
         specifier: ^4.38.0
         version: 4.38.0
+      semver:
+        specifier: ^7.7.3
+        version: 7.7.3
     devDependencies:
       '@wordpress/scripts':
         specifier: ^31.3.0
@@ -2211,6 +2220,13 @@ packages:
     engines: {node: '>=18.12.0', npm: '>=8.19.2'}
     peerDependencies:
       postcss: ^8.0.0
+
+  '@wordpress/preferences@4.38.0':
+    resolution: {integrity: sha512-gGh9pfqEuaAbLR5IgWaaWi8aJaraeIRZ8t4/Juc1p/n9KvhaNDAHDS2gFQT4Id59fXsoyle7LW0kxw7HGOFpxg==}
+    engines: {node: '>=18.12.0', npm: '>=8.19.2'}
+    peerDependencies:
+      react: ^18.0.0
+      react-dom: ^18.0.0
 
   '@wordpress/prettier-config@4.38.0':
     resolution: {integrity: sha512-kWGpmmkIvvObtteeOBkZM3GiTOL8tBkccBJwIWV7kBIC71HrBERnvQZKga84QW5thdt+S0ccjBZk41saEGXavw==}
@@ -9684,6 +9700,26 @@ snapshots:
       autoprefixer: 10.4.23(postcss@8.5.6)
       postcss: 8.5.6
       postcss-import: 16.1.1(postcss@8.5.6)
+
+  '@wordpress/preferences@4.38.0(@emotion/is-prop-valid@1.4.0)(@types/react@18.3.27)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)':
+    dependencies:
+      '@wordpress/a11y': 4.38.0
+      '@wordpress/base-styles': 6.14.0
+      '@wordpress/components': 32.0.0(@emotion/is-prop-valid@1.4.0)(@types/react@18.3.27)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
+      '@wordpress/compose': 7.38.0(react@18.3.1)
+      '@wordpress/data': 10.38.0(react@18.3.1)
+      '@wordpress/deprecated': 4.38.0
+      '@wordpress/element': 6.38.0
+      '@wordpress/i18n': 6.11.0
+      '@wordpress/icons': 11.5.0(react@18.3.1)
+      '@wordpress/private-apis': 1.38.0
+      clsx: 2.1.1
+      react: 18.3.1
+      react-dom: 18.3.1(react@18.3.1)
+    transitivePeerDependencies:
+      - '@emotion/is-prop-valid'
+      - '@types/react'
+      - supports-color
 
   '@wordpress/prettier-config@4.38.0(wp-prettier@3.0.3)':
     dependencies:

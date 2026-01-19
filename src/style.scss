@@ -1,12 +1,109 @@
 @import "@wordpress/dataviews/build-style/style.css";
 
+
+.toplevel_page_wpnas-kit{
+#wpcontent{
+    padding:0;
+}
+}
+
 body #wpnas-kit-app {
     background: #fff;
-    padding: 20px;
     box-sizing: border-box;
+}
+
+
+.admin-ui-page {
+    background-color: #fff;
+    color: #2f2f2f;
+    container: admin-ui-page / inline-size;
+    display: flex
+;
+    flex-flow: column;
+    height: calc(100vh - var(--wp-admin--admin-bar--height));
+    position: relative;
+    z-index: 1;
+}
+.admin-ui-page__header {
+    background: #fff;
+    border-bottom: 1px solid #f0f0f0;
+    padding: 16px 48px;
+    position: sticky;
+    top: 0;
+}
+.dataviews-picker-wrapper, .dataviews-wrapper {
+    box-sizing: border-box;
+    container: dataviews-wrapper / inline-size;
+    display: flex
+;
+    flex-direction: column;
+    font-size: 13px;
+    height: 100%;
+    line-height: 1.4;
+    overflow: auto;
+    scroll-padding-bottom: 64px;
+}
+.dataviews-filters__container, .dataviews__view-actions {
+    box-sizing: border-box;
+    flex-shrink: 0;
+    left: 0;
+    padding: 16px 48px;
+    position: sticky;
+}
+.dataviews-view-table {
+    border-collapse: collapse;
+    border-color: inherit;
+    color: #757575;
+    margin-bottom: auto;
+    position: relative;
+    text-indent: 0;
+    width: 100%;
+}
+.dataviews-view-grid-items {
+    container-type: inline-size;
+    display: grid
+;
+    gap: 32px;
+    grid-template-columns: repeat(auto-fill, minmax(230px, 1fr));
+    grid-template-rows: max-content;
+    margin-bottom: auto;
+    padding: 0 48px 24px;
+}
+.dataviews-footer {
+    z-index: 2;
 }
 
 .wpnas-kit-actions {
     display: flex;
     gap: 8px;
+}
+
+
+.dataviews-title-field{
+        white-space: wrap;
+}
+
+.dataviews-view-grid__title-actions{
+    & + div{
+        flex-grow:1
+    }
+
+     & + div > *:first-child {
+         flex-grow: 1;
+
+         display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 3; /* 这里指定显示的行数 */
+    overflow: hidden;
+    text-overflow: ellipsis;
+    
+    /* 兜底方案：如果要在不支持 clamp 的浏览器生效，可以加个最大高度 */
+    max-height: 4.5em; /* 行数 * line-height (假设是 1.5) */
+    line-height: 1.5;
+    }
+
+     & + div > :last-child > :first-child{
+         display:none;
+    }
+
 }
