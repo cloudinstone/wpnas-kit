@@ -5,6 +5,10 @@
 #wpcontent{
     padding:0;
 }
+
+#wpbody-content{
+    padding-bottom:0;
+}
 }
 
 body #wpnas-kit-app {
@@ -23,13 +27,15 @@ body #wpnas-kit-app {
     height: calc(100vh - var(--wp-admin--admin-bar--height));
     position: relative;
     z-index: 1;
+    overflow: hidden;
 }
 .admin-ui-page__header {
     background: #fff;
     border-bottom: 1px solid #f0f0f0;
     padding: 16px 48px;
-    position: sticky;
-    top: 0;
+    // position: sticky; // 不需要 sticky，因为父容器不滚动
+    // top: 0;
+    flex-shrink: 0;
 }
 .dataviews-picker-wrapper, .dataviews-wrapper {
     box-sizing: border-box;
@@ -38,7 +44,9 @@ body #wpnas-kit-app {
 ;
     flex-direction: column;
     font-size: 13px;
-    height: 100%;
+    // height: 100%; // 改用 flex
+    flex: 1;
+    min-height: 0;
     line-height: 1.4;
     overflow: auto;
     scroll-padding-bottom: 64px;
@@ -106,4 +114,21 @@ body #wpnas-kit-app {
          display:none;
     }
 
+}
+
+.dataviews-title-field{
+    .plugin-icon-name{
+        display:flex;
+        justify-content: flex-start;
+        align-items: flex-start;
+
+        img{
+            margin-top:2px;
+            flex:none;
+        }
+    }
+    .plugin-name{
+
+    font-size:14px;
+    }
 }

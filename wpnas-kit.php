@@ -111,7 +111,7 @@ class Plugin
             'wpnas-kit',
             array($this, 'render_page'),
             'dashicons-cloud',
-            30
+            59
         );
     }
 
@@ -152,7 +152,7 @@ class Plugin
         wp_enqueue_style(
             'wpnas-kit-style',
             plugin_dir_url(__FILE__) . 'build/style-index.css',
-            array('wp-components'),
+            array('wp-components', 'wp-editor', 'wp-edit-site'),
             $asset['version']
         );
 
@@ -193,11 +193,12 @@ class Plugin
     /**
      * Get Remote Plugins
      */
-    public function get_remote_plugins()
+    public function get_remote_plugins($request)
     {
 
+
         $transient = get_transient('wpnas_remote_plugins');
-        if ($transient) {
+        if ($transient && $request->get_param('refresh') === null) {
             return rest_ensure_response($transient);
         }
 

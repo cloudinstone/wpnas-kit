@@ -34,9 +34,22 @@ const calculateRelevance = (item, searchTerms) => {
   let score = 0;
   const name = item.name ? item.name.toLowerCase() : "";
   const description = item.description ? item.description.toLowerCase() : "";
+  const plugin = item.plugin ? item.plugin.toLowerCase() : "";
+
+  // Handle tags which might be an array or object
+  let tags = [];
+  if (Array.isArray(item.tags)) {
+    tags = item.tags;
+  } else if (item.tags && typeof item.tags === "object") {
+    tags = Object.values(item.tags);
+  }
+  // Normalize tags to lowercase strings
+  tags = tags.map((tag) => String(tag).toLowerCase());
 
   searchTerms.forEach((term) => {
-    if (name.includes(term)) score += 2;
+    if (name.includes(term)) score += 4;
+    if (plugin.includes(term)) score += 3;
+    if (tags.some((tag) => tag.includes(term))) score += 2;
     if (description.includes(term)) score += 1;
   });
 
@@ -52,7 +65,7 @@ const DEFAULT_VIEW = {
   sort: {},
   layout: {
     primaryField: "name",
-    badgeFields: [],
+    badgeFields: ["status"],
     enableMoving: false,
   },
   fields: ["version", "author", "status", "actions"],
@@ -208,7 +221,27 @@ const App = () => {
         label: __("Name", "wpnas-kit"),
         enableSorting: true,
         enableHiding: false,
-        render: ({ item }) => <strong>{item.name}</strong>,
+        render: ({ item }) => {
+          let faviconUrl = null;
+          const relUrl = item.plugin_uri || item.author_uri;
+          if (relUrl) {
+            try {
+              const domain = new URL(relUrl).hostname;
+              faviconUrl = `https://www.google.com/s2/favicons?domain=${domain}&sz=32`;
+            } catch (e) {
+              // Invalid URL, ignore
+            }
+          }
+
+          return (
+            <Flex className="plugin-icon-name">
+              {faviconUrl && (
+                <img src={faviconUrl} alt="" width="16" height="16" />
+              )}
+              <strong class="plugin-name">{item.name}</strong>
+            </Flex>
+          );
+        },
       },
       {
         id: "description",
@@ -335,21 +368,31 @@ const App = () => {
         .sort((a, b) => b._relevance - a._relevance);
     }
 
-    return filterSortAndPaginate(
+    const result = filterSortAndPaginate(
       filteredPlugins,
       { ...view, search: "", sort: isSearching ? {} : view.sort },
       fields,
     );
-  }, [plugins, view, fields]);
 
-  if (isLoading) {
-    return <Spinner />;
-  }
+    return {
+      ...result,
+      paginationInfo: {
+        ...result.paginationInfo,
+        infiniteScrollHandler: () => {
+          console.log("infiniteScrollHandler");
+          setView((prev) => ({
+            ...prev,
+            perPage: prev.perPage + 20,
+          }));
+        },
+      },
+    };
+  }, [plugins, view, fields]);
 
   return (
     <div className="admin-ui-page">
       <Flex as="header" className="admin-ui-page__header">
-        <h1>{__("WPNAS Kit", "wpnas-kit")}</h1>
+        <h1>{__("Plugins", "wpnas-kit")}</h1>
       </Flex>
 
       {notice && (
@@ -357,7 +400,9 @@ const App = () => {
           {notice.content}
         </Notice>
       )}
+
       <DataViews
+        isLoading={isLoading}
         data={processedData}
         fields={fields}
         view={view}
