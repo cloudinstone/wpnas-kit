@@ -29,15 +29,24 @@ importers:
       '@wordpress/i18n':
         specifier: ^6.11.0
         version: 6.11.0
+      '@wordpress/icons':
+        specifier: ^11.5.0
+        version: 11.5.0(react@18.3.1)
       '@wordpress/preferences':
         specifier: ^4.38.0
         version: 4.38.0(@emotion/is-prop-valid@1.4.0)(@types/react@18.3.27)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
       '@wordpress/url':
         specifier: ^4.38.0
         version: 4.38.0
+      minisearch:
+        specifier: ^7.2.0
+        version: 7.2.0
       semver:
         specifier: ^7.7.3
         version: 7.7.3
+      stemmer:
+        specifier: ^2.0.1
+        version: 2.0.1
     devDependencies:
       '@wordpress/scripts':
         specifier: ^31.3.0
@@ -4915,6 +4924,9 @@ packages:
   minimist@1.2.8:
     resolution: {integrity: sha512-2yyAR8qBkN3YuheJanUpWC5U3bb5osDywNB8RzDVlDwDHbocAJveqqj1u8+SVD7jkWT4yvsHCpWqqWqAxb0zCA==}
 
+  minisearch@7.2.0:
+    resolution: {integrity: sha512-dqT2XBYUOZOiC5t2HRnwADjhNS2cecp9u+TJRiJ1Qp/f5qjkeT5APcGPjHw+bz89Ms8Jp+cG4AlE+QZ/QnDglg==}
+
   mitt@3.0.1:
     resolution: {integrity: sha512-vKivATfr97l2/QBCYAkXYDbrIWPM2IIKEl7YPhjCvKlG3kE2gm+uBo6nEXK3M5/Ffh/FLpKExzOQ3JJoJGFKBw==}
 
@@ -6087,6 +6099,10 @@ packages:
   statuses@2.0.2:
     resolution: {integrity: sha512-DvEy55V3DB7uknRo+4iOGT5fP1slR8wQohVdknigZPMpMstaKJQWhwiYBACJE3Ul2pTnATihhBYnRhZQHGBiRw==}
     engines: {node: '>= 0.8'}
+
+  stemmer@2.0.1:
+    resolution: {integrity: sha512-bkWvSX2JR4nSZFfs113kd4C6X13bBBrg4fBKv2pVdzpdQI2LA5pZcWzTFNdkYsiUNl13E4EzymSRjZ0D55jBYg==}
+    hasBin: true
 
   stop-iteration-iterator@1.1.0:
     resolution: {integrity: sha512-eLoXW/DHyl62zxY4SCaIgnRhuMr6ri4juEYARS8E6sCEqzKpOiE521Ucofdx+KnDZl5xmvGYaaKCk5FEOxJCoQ==}
@@ -12960,6 +12976,8 @@ snapshots:
 
   minimist@1.2.8: {}
 
+  minisearch@7.2.0: {}
+
   mitt@3.0.1: {}
 
   mixin-object@2.0.1:
@@ -14213,6 +14231,8 @@ snapshots:
   statuses@1.5.0: {}
 
   statuses@2.0.2: {}
+
+  stemmer@2.0.1: {}
 
   stop-iteration-iterator@1.1.0:
     dependencies:

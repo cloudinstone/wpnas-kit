@@ -1,14 +1,13 @@
 @import "@wordpress/dataviews/build-style/style.css";
 
+.toplevel_page_wpnas-kit {
+    #wpcontent {
+        padding: 0;
+    }
 
-.toplevel_page_wpnas-kit{
-#wpcontent{
-    padding:0;
-}
-
-#wpbody-content{
-    padding-bottom:0;
-}
+    #wpbody-content {
+        padding-bottom: 0;
+    }
 }
 
 body #wpnas-kit-app {
@@ -16,13 +15,11 @@ body #wpnas-kit-app {
     box-sizing: border-box;
 }
 
-
 .admin-ui-page {
     background-color: #fff;
     color: #2f2f2f;
     container: admin-ui-page / inline-size;
-    display: flex
-;
+    display: flex;
     flex-flow: column;
     height: calc(100vh - var(--wp-admin--admin-bar--height));
     position: relative;
@@ -36,12 +33,16 @@ body #wpnas-kit-app {
     // position: sticky; // 不需要 sticky，因为父容器不滚动
     // top: 0;
     flex-shrink: 0;
+
+    // Ensure popovers in header are visible if they don't use portal
+    position: relative;
+    z-index: 20;
 }
-.dataviews-picker-wrapper, .dataviews-wrapper {
+.dataviews-picker-wrapper,
+.dataviews-wrapper {
     box-sizing: border-box;
     container: dataviews-wrapper / inline-size;
-    display: flex
-;
+    display: flex;
     flex-direction: column;
     font-size: 13px;
     // height: 100%; // 改用 flex
@@ -51,7 +52,8 @@ body #wpnas-kit-app {
     overflow: auto;
     scroll-padding-bottom: 64px;
 }
-.dataviews-filters__container, .dataviews__view-actions {
+.dataviews-filters__container,
+.dataviews__view-actions {
     box-sizing: border-box;
     flex-shrink: 0;
     left: 0;
@@ -66,15 +68,29 @@ body #wpnas-kit-app {
     position: relative;
     text-indent: 0;
     width: 100%;
+
+    tr {
+        td:first-child,
+        th:first-child {
+            padding-left: 48px;
+        }
+
+        td:last-child,
+        th:last-child {
+            padding-right: 48px;
+        }
+    }
 }
 .dataviews-view-grid-items {
     container-type: inline-size;
-    display: grid
-;
+    display: grid;
     gap: 32px;
     grid-template-columns: repeat(auto-fill, minmax(230px, 1fr));
     grid-template-rows: max-content;
     margin-bottom: auto;
+    padding: 0 48px 24px;
+}
+.dataviews-view-grid {
     padding: 0 48px 24px;
 }
 .dataviews-footer {
@@ -86,49 +102,88 @@ body #wpnas-kit-app {
     gap: 8px;
 }
 
+.dataviews-view-grid__title-actions {
+    & + div {
+        flex-grow: 1;
+    }
 
-.dataviews-title-field{
+    & + div > *:first-child {
+        flex-grow: 1;
+
+        display: -webkit-box;
+        -webkit-box-orient: vertical;
+        -webkit-line-clamp: 3; /* 这里指定显示的行数 */
+        overflow: hidden;
+        text-overflow: ellipsis;
+
+        /* 兜底方案：如果要在不支持 clamp 的浏览器生效，可以加个最大高度 */
+        max-height: 4.5em; /* 行数 * line-height (假设是 1.5) */
+        line-height: 1.5;
+    }
+
+    & + div > :last-child > :first-child {
+        display: none;
+    }
+}
+
+.components-external-link {
+    $link: &;
+    text-decoration: none;
+
+    &__contents {
+        text-decoration: none;
+    }
+    &__icon {
+        visibility: hidden;
+    }
+
+    &:hover {
+        #{$link}__contents {
+            text-decoration: underline;
+        }
+        #{$link}__icon {
+            visibility: visible;
+        }
+    }
+}
+
+.dataviews-title-field {
+    &,
+    & a {
         white-space: wrap;
-}
-
-.dataviews-view-grid__title-actions{
-    & + div{
-        flex-grow:1
     }
 
-     & + div > *:first-child {
-         flex-grow: 1;
-
-         display: -webkit-box;
-    -webkit-box-orient: vertical;
-    -webkit-line-clamp: 3; /* 这里指定显示的行数 */
-    overflow: hidden;
-    text-overflow: ellipsis;
-    
-    /* 兜底方案：如果要在不支持 clamp 的浏览器生效，可以加个最大高度 */
-    max-height: 4.5em; /* 行数 * line-height (假设是 1.5) */
-    line-height: 1.5;
-    }
-
-     & + div > :last-child > :first-child{
-         display:none;
-    }
-
-}
-
-.dataviews-title-field{
-    .plugin-icon-name{
-        display:flex;
+    .plugin-icon-name {
+        display: flex;
         justify-content: flex-start;
         align-items: flex-start;
 
-        img{
-            margin-top:2px;
-            flex:none;
+        .plugin-icon {
+            width: 16px;
+            height: 16px;
+            display: inline-block;
+            margin-top: 2px;
+            flex: none;
         }
     }
-    .plugin-name{
 
-    font-size:14px;
+    .plugin-name-link {
+        &:hover {
+            text-decoration: underline;
+        }
     }
+    .plugin-name {
+        font-size: 14px;
+    }
+}
+
+.plugin-description {
+    margin-left: 24px;
+}
+
+.components-snackbar-list {
+    position: fixed;
+    bottom: 24px;
+    left: 24px;
+    z-index: 100000;
 }

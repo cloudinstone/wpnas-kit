@@ -26,8 +26,11 @@
     "@wordpress/dom-ready": "^4.38.0",
     "@wordpress/element": "^6.38.0",
     "@wordpress/i18n": "^6.11.0",
+    "@wordpress/icons": "^11.5.0",
     "@wordpress/preferences": "^4.38.0",
     "@wordpress/url": "^4.38.0",
-    "semver": "^7.7.3"
+    "minisearch": "^7.2.0",
+    "semver": "^7.7.3",
+    "stemmer": "^2.0.1"
   }
 }
